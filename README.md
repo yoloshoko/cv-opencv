@@ -4,5 +4,5 @@
 
 # Requirements
 
-- opencv-python>=3.4.1
-- opencv-contrib-python>=3.4.1
+- opencv-python==3.4.18
+- opencv-contrib-python==3.4.18
