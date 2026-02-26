@@ -224,3 +224,41 @@ def pyUp(img):
     for idx_c in range(img.shape[2]):
         result[:,:,idx_c] = cv2.filter2D(upsampled[:,:,idx_c],-1,kernel)
     return result
+
+
+def printTupleShape(datas):
+    print(f"len(datas)={len(datas)}")
+    for i, data in enumerate(datas):
+        try:
+            print(f"data {i}: {data.shape}")
+        except:
+            print(f"type(data):{type(data)}")
+            break
+
+
+def cornerHarris(img,block_size=3, ksize=3, k=0.04):
+    if img.ndim == 3:
+        gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+    else:
+        gray = img.copy()
+
+    gray = np.float32(gray)
+    h, w = gray.shape
+    Ix = cv2.Sobel(gray,cv2.CV_64F,1,0,ksize=ksize)
+    Iy = cv2.Sobel(gray,cv2.CV_64F,0,1,ksize=ksize)
+    
+    Ixx = Ix * Ix 
+    Iyy = Iy * Iy
+    Ixy = Ix * Iy
+    # print(Ixx.shape,Iyy.shape,Ixy.shape)
+
+    Sxx = cv2.GaussianBlur(Ixx,(block_size,block_size),0)
+    Syy = cv2.GaussianBlur(Iyy,(block_size,block_size),0)
+    Sxy = cv2.GaussianBlur(Ixy,(block_size,block_size),0)
+
+    # 初始化相应矩阵
+    det_M = Sxx * Syy - Sxy ** 2
+    trace_M = Sxx + Syy 
+    R = det_M - k * (trace_M ** 2)
+    return R
+
