@@ -11,7 +11,7 @@ if __name__ == "__main__":
     #* H,W大小变化
     img = cv2.imread("../data/images/lena.jpg")
     img1 = img[0:200,0:200,:]
-    print(img.shape,"->",img1.shape)  # H,W,C -> H,W,C
+    print(img.shape,"->",img1.shape)  # H,W,C -> H_1,W_1,C
     # cv_show(img1)
 
     

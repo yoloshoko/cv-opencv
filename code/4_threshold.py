@@ -5,6 +5,7 @@ import sys
 sys.path.append('..')
 from utils.data_utils import *
 
+## 图像阈值处理
 
 if __name__ == "__main__":
     # img = sim_img()  # H,W,C

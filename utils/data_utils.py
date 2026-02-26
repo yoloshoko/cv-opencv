@@ -50,7 +50,9 @@ def sobel_gradient(img,direct=False):
     if direct == False:
         ## |Gx|
         sobelx = cv2.Sobel(img,cv2.CV_64F,1,0,ksize=3)  # H,W,C->H,W,C
+        print("sobelx:",type(sobelx))  # <class 'numpy.ndarray'>
         sobelx = cv2.convertScaleAbs(sobelx)  # H,W,C->H,W,C
+        print("sobelx:",type(sobelx))  # <class 'numpy.ndarray'>
         # print(cv2.CV_64F,sobelx.shape)  # 常量:6,表示浮点数
         # cv_show(sobelx)
 
