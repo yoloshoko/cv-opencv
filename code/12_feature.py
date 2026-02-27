@@ -44,6 +44,9 @@ if __name__ == "__main__":
     kp, des = sift.compute(gray, kp)  # H,W / N,KeyPoint -> N / N,D 
     print (np.array(kp).shape,des.shape)  # N / N,D
 
+    ### 合并的写法
+    kp1, des1 = sift.detectAndCompute(gray, mask=None)  # H,W-> N 个 Keypoint / N,D
+    print (np.array(kp1).shape,des1.shape) 
 
     ## 练习:
     # (1)角点检测
