@@ -28,3 +28,8 @@ if __name__ == "__main__":
         plt.xticks([]), plt.yticks([])
     plt.show()
     
+
+    ## 进行图像二值化处理
+    _,out = cv2.threshold(img_gray, 0, 255,
+    cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)  # 0表示自动计算最佳阈值的算法,适合双峰的结构; 结果:暗的部分变白，亮的部分变黑
+    cv_show(out)
